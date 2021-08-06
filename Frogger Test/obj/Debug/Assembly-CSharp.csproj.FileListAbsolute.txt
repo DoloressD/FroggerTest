@@ -1,0 +1,2 @@
+C:\Users\Sarah\Documents\Projects\Frogger Test\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
+C:\Users\Sarah\Documents\Projects\Frogger Test\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
