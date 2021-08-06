@@ -1,6 +1,6 @@
 Win64
 PlayerPath?
-C:/Users/Sarah/Documents/Projects/Frogger Test/Build/Frogger Test.exe
+C:/Users/Sarah/Documents/GitHub/FroggerTest/Frogger Test/Build/Frogger Test.exe
 SceneListBegin?
 Assets/Scenes/Level1.unity
 Assets/Scenes/Level2.unity
