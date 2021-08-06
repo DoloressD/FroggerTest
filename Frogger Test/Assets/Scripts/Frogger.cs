@@ -11,13 +11,13 @@ public class Frogger : MonoBehaviour
     {
         if (!keyPressed) //making real sure you cant speed the froggy up with two directional key presses
         {
-            if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
+            if ((Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) && transform.position.x < 8)
             {
                 keyPressed = true;
                 rb.MovePosition(rb.position + Vector2.right);
             }
 
-            else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
+            else if ((Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) && transform.position.x > -8)
             {
                 keyPressed = true;
                 rb.MovePosition(rb.position + Vector2.left);
@@ -29,7 +29,7 @@ public class Frogger : MonoBehaviour
                 rb.MovePosition(rb.position + Vector2.up);
             }
                 
-            else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
+            else if ((Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S)) && transform.position.y > -4)
             {
                 keyPressed = true;
                 rb.MovePosition(rb.position + Vector2.down);
