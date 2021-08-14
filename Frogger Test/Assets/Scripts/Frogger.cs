@@ -5,49 +5,69 @@ public class Frogger : MonoBehaviour
 {
     public Rigidbody2D rb;
 
-    private bool keyPressed = false;
+    private bool isHAxisInUse = false;
+    private bool isVAxisInUse = false;
 
     void Update()
     {
-        if (!keyPressed) //making real sure you cant speed the froggy up with two directional key presses
-        {
-            if ((Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) && transform.position.x < 8)
-            {
-                keyPressed = true;
-                rb.MovePosition(rb.position + Vector2.right);
-            }
+        //rb.MovePosition(rb.position + new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"))); i need the bounds
+        float horizontalMove = Input.GetAxisRaw("Horizontal");
+        float verticalMove = Input.GetAxisRaw("Vertical");
 
-            else if ((Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) && transform.position.x > -8)
+        if (horizontalMove != 0)
+        {
+            if (!isHAxisInUse)
             {
-                keyPressed = true;
-                rb.MovePosition(rb.position + Vector2.left);
+                switch (horizontalMove)
+                {
+                    case 1:
+                        if (transform.position.x < 8)
+                        {
+                            rb.MovePosition(rb.position + Vector2.right);
+                            isHAxisInUse = true;
+                        }
+                        break;
+
+                    case -1:
+                        if (transform.position.x > -8)
+                        {
+                            rb.MovePosition(rb.position + Vector2.left);
+                            isHAxisInUse = true;
+                        }
+                        break;
+                }
             }
-                
-            else if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
+        }
+            
+        else
+        isHAxisInUse = false;
+
+        if (verticalMove != 0)
+        {
+            if (!isVAxisInUse)
             {
-                keyPressed = true;
-                rb.MovePosition(rb.position + Vector2.up);
+
+                switch (verticalMove)
+                {
+                    case 1:
+                        rb.MovePosition(rb.position + Vector2.up);
+                        isVAxisInUse = true;
+                        break;
+
+                    case -1:
+                        if (transform.position.y > -4)
+                        {
+                            rb.MovePosition(rb.position + Vector2.down);
+                            isVAxisInUse = true;
+                        }
+                        break;
+                }
             }
-                
-            else if ((Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S)) && transform.position.y > -4)
-            {
-                keyPressed = true;
-                rb.MovePosition(rb.position + Vector2.down);
-            }
-                
         }
         else
-        {
-            if(Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.D) ||
-               Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.A) ||
-               Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.W) ||
-               Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.S))
-            {
-                keyPressed = false;
-            }
-        }
+        isVAxisInUse = false;
+    }
 
-    } 
 
     void OnTriggerEnter2D(Collider2D collision)
     {
